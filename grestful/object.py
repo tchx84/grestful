@@ -48,11 +48,11 @@ class Object(GObject.GObject):
         GObject.GObject.__init__(self)
         self.id = id
 
-    def _get(self, url, params):
+    def _get(self, url, params=None):
         """ Wrapper method for GET calls. """
         self._call(self.GET, url, params, None)
 
-    def _post(self, url, params, uploads):
+    def _post(self, url, params, uploads=None):
         """ Wrapper method for POST calls. """
         self._call(self.POST, url, params, uploads)
 
