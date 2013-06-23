@@ -22,9 +22,9 @@ import logging
 
 from gi.repository import GObject
 
-from error import TransferError
-from error import ResponseError
-from error import NotSupportedError
+from .errors import TransferError
+from .errors import ResponseError
+from .errors import NotSupportedError
 
 
 class Object(GObject.GObject):

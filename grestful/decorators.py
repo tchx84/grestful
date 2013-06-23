@@ -17,8 +17,8 @@
 
 from gi.repository import GObject
 
-from error import AlreadyCreatedError
-from error import NotCreatedError
+from .errors import AlreadyCreatedError
+from .errors import NotCreatedError
 
 
 def check_is_created(method):
