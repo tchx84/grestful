@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='grestful',
     keywords=['restful', 'pyobject'],
-    version='0.1.0',
+    version='0.1.5',
     description='Integrate RESTful web services to your Glib2 code.',
     url='http://github.com/tchx84/grestful',
     author='Martin Abente Lahaye',
