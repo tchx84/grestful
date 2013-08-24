@@ -77,10 +77,9 @@ class Object(GObject.GObject):
             c.setopt(c.POST, 1)
             if uploads is not None:
                 params += [(uploads['field'], (c.FORM_FILE, uploads['path']))]
-            if params is None:
-                c.setopt(c.POSTFIELDS, '')
-            else:
                 c.setopt(c.HTTPPOST, params)
+            else:
+                c.setopt(c.POSTFIELDS, '%s' % urllib.urlencode(params))
 
         elif method == self.GET:
             c.setopt(c.HTTPGET, 1)
@@ -105,6 +104,7 @@ class Object(GObject.GObject):
         c.setopt(c.NOPROGRESS, 0)
         c.setopt(c.PROGRESSFUNCTION, self._updated_cb)
         c.setopt(c.WRITEFUNCTION, _write_cb)
+        c.setopt(c.FOLLOWLOCATION, 1)
         #c.setopt(c.VERBOSE, True)
 
         try:
