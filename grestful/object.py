@@ -79,7 +79,9 @@ class Object(GObject.GObject):
                 params += [(uploads['field'], (c.FORM_FILE, uploads['path']))]
                 c.setopt(c.HTTPPOST, params)
             else:
-                c.setopt(c.POSTFIELDS, '%s' % urllib.urlencode(params))
+                # XXX memory leak in pyCurl/7.29.0?          
+                data = urllib.urlencode(params)
+                c.setopt(c.POSTFIELDS, data)
 
         elif method == self.GET:
             c.setopt(c.HTTPGET, 1)
