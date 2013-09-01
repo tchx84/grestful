@@ -76,10 +76,16 @@ class Object(GObject.GObject):
         if method == self.POST:
             c.setopt(c.POST, 1)
             if uploads is not None:
-                params += [(uploads['field'], (c.FORM_FILE, uploads['path']))]
+                if isinstance(uploads, dict):
+                    # handle single upload
+                    uploads = [uploads]
+                for upload in uploads:
+                    params += [(upload['field'],
+                               (c.FORM_FILE, upload['path']))]
+
                 c.setopt(c.HTTPPOST, params)
             else:
-                # XXX memory leak in pyCurl/7.29.0?          
+                # XXX memory leak in pyCurl/7.29.0?
                 data = urllib.urlencode(params)
                 c.setopt(c.POSTFIELDS, data)
 
