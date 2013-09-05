@@ -122,7 +122,7 @@ class Object(GObject.GObject):
             raise TransferError(str(e))
         else:
             code = c.getinfo(c.HTTP_CODE)
-            if code != 200:
+            if not 200 <= code < 300:
                 raise ResponseError(code)
         finally:
             c.close()
