@@ -44,7 +44,7 @@ class TinyUrl(Object):
 
 
 def _completed_cb(tiny, result, loop):
-    if result['state'] is 'ok':
+    if result['state'] == 'ok':
         print 'TinyUrl is %s' % result['shorturl']
     loop.quit()
 
